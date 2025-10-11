@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports • EvalX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div id="app" class="app">
+      <header class="topbar">
+        <div class="brand"><i class="ri-pulse-line"></i><span>EvalX • Reports</span></div>
+        <div class="controls">
+          <a class="btn" href="manager.html"><i class="ri-arrow-left-line"></i> Back</a>
+          <button id="modeToggle" class="btn btn-glow" title="Toggle theme">
+            <i class="ri-sun-line mode-sun"></i>
+            <i class="ri-moon-line mode-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main id="screen-reports" class="screen screen-active">
+        <section class="reports-layout">
+          <div class="reports-header">
+            <h2>Reports & KPIs</h2>
+            <div class="header-actions">
+              <button class="btn btn-success export-btn"><i class="ri-download-2-line"></i> Export</button>
+            </div>
+          </div>
+
+          <div class="kpis glass">
+            <div class="kpi"><div class="kpi-value" data-target="1240">0</div><div class="kpi-label">Evaluations</div></div>
+            <div class="kpi"><div class="kpi-value" data-target="87">0</div><div class="kpi-label">Avg Score</div></div>
+            <div class="kpi"><div class="kpi-value" data-target="42">0</div><div class="kpi-label">Reports</div></div>
+          </div>
+
+          <div class="reports-grid">
+            <div class="chart-3d glass">
+              <h3>3D Bars</h3>
+              <div class="bars3d">
+                <div class="bar" style="--h:60%"></div>
+                <div class="bar" style="--h:80%"></div>
+                <div class="bar" style="--h:40%"></div>
+                <div class="bar" style="--h:70%"></div>
+                <div class="bar" style="--h:50%"></div>
+              </div>
+            </div>
+
+            <div class="leaderboard glass">
+              <h3>Leaderboard</h3>
+              <ol>
+                <li class="gold">Mia Carter</li>
+                <li class="silver">Alex Johnson</li>
+                <li class="bronze">Sam Patel</li>
+                <li>Lee Wong</li>
+                <li>Sara Kim</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>
+
+
+

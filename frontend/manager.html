@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manager Dashboard • EvalX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu"><i
+            class="ri-menu-line"></i></button>
+        <i class="ri-pulse-line"></i><span>EvalX • Manager</span>
+      </div>
+      <div class="controls">
+        <button class="btn" id="logoutBtn"><i class="ri-logout-box-r-line"></i> Logout</button>
+        <button id="modeToggle" class="btn btn-glow" title="Toggle theme">
+          <i class="ri-sun-line mode-sun"></i>
+          <i class="ri-moon-line mode-moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="side-menu-overlay" id="menuOverlay"></div>
+    <nav class="side-menu" id="sideMenu">
+      <div class="menu-content">
+        <div class="menu-section">
+          <h3>Dashboard</h3>
+          <a href="#" class="menu-item active" data-target="evaluate">
+            <i class="ri-contrast-drop-2-line"></i>
+            <span>Evaluate</span>
+          </a>
+          <a href="#" class="menu-item" data-target="goals">
+            <i class="ri-flag-2-line"></i>
+            <span>Goals</span>
+          </a>
+          <a href="#" class="menu-item" data-target="feedback">
+            <i class="ri-chat-3-line"></i>
+            <span>Feedback</span>
+          </a>
+          <a href="#" class="menu-item" data-target="reports">
+            <i class="ri-bar-chart-2-line"></i>
+            <span>Reports</span>
+          </a>
+          <a href="#" class="menu-item" data-target="employees">
+            <i class="ri-team-line"></i>
+            <span>Employees</span>
+          </a>
+        </div>
+        <div class="menu-section">
+          <h3>Tools</h3>
+          <a href="#" class="menu-item">
+            <i class="ri-settings-3-line"></i>
+            <span>Settings</span>
+          </a>
+          <a href="#" class="menu-item">
+            <i class="ri-team-line"></i>
+            <span>Team</span>
+          </a>
+          <a href="#" class="menu-item">
+            <i class="ri-notification-3-line"></i>
+            <span>Notifications</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="screen-manager" class="screen screen-active">
+      <aside class="sidebar glass">
+        <button class="nav-item active" data-target="evaluate"><i
+            class="ri-contrast-drop-2-line"></i><span>Evaluate</span></button>
+        <button class="nav-item" data-target="goals"><i class="ri-flag-2-line"></i><span>Goals</span></button>
+        <button class="nav-item" data-target="feedback"><i class="ri-chat-3-line"></i><span>Feedback</span></button>
+        <button class="nav-item" data-target="reports"><i class="ri-bar-chart-2-line"></i><span>Reports</span></button>
+        <button class="nav-item" data-target="employees"><i class="ri-team-line"></i><span>Employees</span></button>
+      </aside>
+      <section class="content">
+        <div class="content-section active" data-section="evaluate">
+          <h2>Top Performers (This Month)</h2>
+          <div class="top-performers-grid" id="topPerformersGrid">
+            <!-- Top performers will be loaded here dynamically -->
+            <div class="glass" style="padding: 24px; text-align: center; color: var(--text-secondary);">
+              Loading top performers...
+            </div>
+          </div>
+
+          <div class="charts-grid glass">
+            <div class="chart-card">
+              <h3>Team Performance (Bar)</h3><canvas id="barChart"></canvas>
+            </div>
+            <div class="chart-card">
+              <h3>Skills Distribution (Pie)</h3><canvas id="pieChart"></canvas>
+            </div>
+            <div class="chart-card">
+              <h3>Competency Radar</h3><canvas id="radarChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section" data-section="goals">
+          <h2>Goal Tracking</h2>
+          <div class="timeline glass">
+            <div class="checkpoint" data-active="true"><span>Q1</span></div>
+            <div class="checkpoint"><span>Q2</span></div>
+            <div class="checkpoint"><span>Q3</span></div>
+            <div class="checkpoint"><span>Q4</span></div>
+          </div>
+        </div>
+
+        <div class="content-section" data-section="feedback">
+          <h2>Feedback</h2>
+          <div class="card-grid">
+            <div class="flip-card feedback">
+              <div class="flip-inner">
+                <div class="flip-front glass">
+                  <h3>Alex - Score</h3>
+                  <div class="score">86</div>
+                </div>
+                <div class="flip-back glass">
+                  <p>Great ownership, refine documentation for complex modules.</p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card feedback">
+              <div class="flip-inner">
+                <div class="flip-front glass">
+                  <h3>Mia - Score</h3>
+                  <div class="score">91</div>
+                </div>
+                <div class="flip-back glass">
+                  <p>Excellent insights; consider sharing dashboards with the team more often.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section" data-section="reports">
+          <h2>Quick Reports</h2>
+          <button class="btn btn-secondary route-reports">Open Reports Page</button>
+        </div>
+
+        <div class="content-section" data-section="employees">
+          <div class="employee-management-header">
+            <h1>Manage Employees</h1>
+            <div class="header-tabs">
+              <button class="tab-btn active" data-tab="add">Add Employee</button>
+              <button class="tab-btn" data-tab="view">View Table</button>
+            </div>
+          </div>
+
+          <!-- Add Employee Form -->
+          <div class="tab-content active" data-tab-content="add">
+            <div class="employee-form-container glass">
+              <form id="employeeForm" class="employee-form">
+                <div class="form-group">
+                  <label for="empName">Employee Name</label>
+                  <input type="text" id="empName" name="empName" placeholder="Rohit" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="empId">Employee ID</label>
+                  <input type="text" id="empId" name="empId" placeholder="EMP1000" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="empPhone">Phone</label>
+                  <input type="tel" id="empPhone" name="empPhone" placeholder="9876543210" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="empAddress">Employee Address</label>
+                  <textarea id="empAddress" name="empAddress" rows="4" placeholder="Jaipur" required></textarea>
+                </div>
+
+                <div class="form-group checkbox-group">
+                  <input type="checkbox" id="empWorkingStatus" name="empWorkingStatus">
+                  <label for="empWorkingStatus">Working Status</label>
+                </div>
+
+                <div class="form-group">
+                  <label for="empDepartment">Departments</label>
+                  <select id="empDepartment" name="empDepartment" required>
+                    <option value="">Select Department</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechanical Engg">Mechanical Engg</option>
+                    <option value="Electrical Engg">Electrical Engg</option>
+                    <option value="Civil Engg">Civil Engg</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ME">ME</option>
+                    <option value="EE">EE</option>
+                    <option value="FE">FE</option>
+                  </select>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Add Employee</button>
+                  <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Employees Table -->
+          <div class="tab-content" data-tab-content="view">
+            <div class="employees-table-container">
+              <h2>Employees Table</h2>
+              <div class="search-container glass">
+                <i class="ri-search-line"></i>
+                <input type="text" id="employeeSearch" placeholder="Search by name, ID, or department..." />
+              </div>
+              <div class="table-wrapper glass">
+                <table class="employees-table">
+                  <thead>
+                    <tr>
+                      <th>S.NO.</th>
+                      <th>NAME</th>
+                      <th>ID</th>
+                      <th>PHONE</th>
+                      <th>WORKING STATUS</th>
+                      <th>DEPARTMENT</th>
+                      <th>ADDRESS</th>
+                      <th>ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="employeesTableBody">
+                    <!-- Sample data - will be populated dynamically -->
+                    <tr>
+                      <td>1</td>
+                      <td>Anil Chouhan</td>
+                      <td>5672</td>
+                      <td>7014920354</td>
+                      <td>True</td>
+                      <td>CSE</td>
+                      <td>Jaipur, Rajasthan</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Khaliq Ansari</td>
+                      <td>8937</td>
+                      <td>8107951417</td>
+                      <td>False</td>
+                      <td>CSE</td>
+                      <td>Nainwa, Rajasthan</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Aryan Singh</td>
+                      <td>7935</td>
+                      <td>9554574976</td>
+                      <td>True</td>
+                      <td>EE</td>
+                      <td>Pune, Maharashtra</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Yuvraj Singh Panwar</td>
+                      <td>8905</td>
+                      <td>8619667832</td>
+                      <td>False</td>
+                      <td>ME</td>
+                      <td>Kanpur, Uttar Pradesh</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Utkarsh Sharma</td>
+                      <td>8902</td>
+                      <td>7231093193</td>
+                      <td>False</td>
+                      <td>EE</td>
+                      <td>Manali, Himachal Pradesh</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>Ishaan</td>
+                      <td>8733</td>
+                      <td>7017542923</td>
+                      <td>True</td>
+                      <td>ME</td>
+                      <td>Gurugram, Haryana</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>Shivangi Tiwari</td>
+                      <td>7934</td>
+                      <td>8826855030</td>
+                      <td>True</td>
+                      <td>ME</td>
+                      <td>Delhi, India</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>Harshita Agarwal</td>
+                      <td>2490</td>
+                      <td>8358035806</td>
+                      <td>True</td>
+                      <td>CSE</td>
+                      <td>Indore, Madhya Pradesh</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>Shreyas Sinha</td>
+                      <td>4608</td>
+                      <td>9140697163</td>
+                      <td>False</td>
+                      <td>CSE</td>
+                      <td>Gorakhpur, Uttar Pradesh</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>Rohit</td>
+                      <td>7538</td>
+                      <td>9876543210</td>
+                      <td>True</td>
+                      <td>EE</td>
+                      <td>Jaipur</td>
+                      <td>
+                        <button class="action-btn delete-btn">Delete</button>
+                        <button class="action-btn update-btn">Update</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Employee Report Modal -->
+    <div id="employeeReportModal" class="modal-overlay">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h2>Employee Progress Report</h2>
+          <button class="close-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <div class="modal-body" id="reportModalBody">
+          <!-- Content will be loaded here -->
+          <div class="loading-spinner">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Employee Details Modal -->
+    <div id="employeeDetailsModal" class="modal-overlay">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h2>Employee Details</h2>
+          <button class="close-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <div class="modal-body" id="detailsModalBody">
+          <!-- Content will be loaded here -->
+          <div class="loading-spinner">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback & Rating Modal -->
+    <div id="feedbackModal" class="modal-overlay">
+      <div class="modal-content glass">
+        <div class="modal-header">
+          <h2>Provide Feedback & Rating</h2>
+          <button class="close-modal-btn"><i class="ri-close-line"></i></button>
+        </div>
+        <div class="modal-body" id="feedbackModalBody">
+          <form id="feedbackForm">
+            <input type="hidden" id="feedbackEmployeeId" />
+
+            <div class="feedback-employee-info"
+              style="margin-bottom: 24px; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img id="feedbackEmployeeAvatar" src=""
+                  style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <h4 id="feedbackEmployeeName" style="margin: 0; font-size: 16px;">Employee Name</h4>
+                  <p id="feedbackEmployeeTitle" style="margin: 0; color: var(--text-secondary); font-size: 13px;">Title
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">Review
+                Period</label>
+              <select id="feedbackPeriod" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-main);">
+                <option value="">Select Period</option>
+                <option value="Q1 2024">Q1 2024</option>
+                <option value="Q2 2024">Q2 2024</option>
+                <option value="Q3 2024">Q3 2024</option>
+                <option value="Q4 2024">Q4 2024</option>
+                <option value="Annual 2024">Annual 2024</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">Overall Score
+                (0-100)</label>
+              <input type="number" id="feedbackScore" min="0" max="100" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-main);"
+                placeholder="Enter score (0-100)">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">Summary</label>
+              <textarea id="feedbackSummary" rows="3" required
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-main); resize: vertical;"
+                placeholder="Brief summary of performance..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">Key Highlights
+                (comma-separated)</label>
+              <input type="text" id="feedbackHighlights"
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-main);"
+                placeholder="e.g., Strong leadership, Excellent communication, Met all deadlines">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 12px; color: var(--text); font-weight: 600;">Detailed
+                Ratings</label>
+
+              <div style="margin-bottom: 16px;">
+                <label
+                  style="display: block; margin-bottom: 6px; color: var(--text-secondary); font-size: 14px;">Productivity</label>
+                <input type="range" id="feedbackProductivity" min="0" max="100" value="50" class="slider"
+                  style="width: 100%;">
+                <div style="text-align: right; color: var(--text-secondary); font-size: 13px; margin-top: 4px;"><span
+                    id="productivityValue">50</span>%</div>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <label
+                  style="display: block; margin-bottom: 6px; color: var(--text-secondary); font-size: 14px;">Teamwork</label>
+                <input type="range" id="feedbackTeamwork" min="0" max="100" value="50" class="slider"
+                  style="width: 100%;">
+                <div style="text-align: right; color: var(--text-secondary); font-size: 13px; margin-top: 4px;"><span
+                    id="teamworkValue">50</span>%</div>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <label
+                  style="display: block; margin-bottom: 6px; color: var(--text-secondary); font-size: 14px;">Creativity</label>
+                <input type="range" id="feedbackCreativity" min="0" max="100" value="50" class="slider"
+                  style="width: 100%;">
+                <div style="text-align: right; color: var(--text-secondary); font-size: 13px; margin-top: 4px;"><span
+                    id="creativityValue">50</span>%</div>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <label
+                  style="display: block; margin-bottom: 6px; color: var(--text-secondary); font-size: 14px;">Accuracy</label>
+                <input type="range" id="feedbackAccuracy" min="0" max="100" value="50" class="slider"
+                  style="width: 100%;">
+                <div style="text-align: right; color: var(--text-secondary); font-size: 13px; margin-top: 4px;"><span
+                    id="accuracyValue">50</span>%</div>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+              <label style="display: block; margin-bottom: 8px; color: var(--text); font-weight: 600;">Additional
+                Notes</label>
+              <textarea id="feedbackNotes" rows="4"
+                style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font-main); resize: vertical;"
+                placeholder="Any additional feedback or recommendations..."></textarea>
+            </div>
+
+            <div style="display: flex; gap: 12px; justify-content: flex-end;">
+              <button type="button" class="btn close-modal-btn"
+                style="background: rgba(255,255,255,0.05);">Cancel</button>
+              <button type="submit" class="btn btn-primary">Submit Feedback</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

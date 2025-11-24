@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dashboard • EvalX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div id="app" class="app">
+      <header class="topbar">
+        <div class="brand">
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu"><i class="ri-menu-line"></i></button>
+          <i class="ri-pulse-line"></i><span>EvalX • Employee</span>
+        </div>
+        <div class="controls">
+          <button class="btn" id="logoutBtn"><i class="ri-logout-box-r-line"></i> Logout</button>
+          <button id="modeToggle" class="btn btn-glow" title="Toggle theme">
+            <i class="ri-sun-line mode-sun"></i>
+            <i class="ri-moon-line mode-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <div class="side-menu-overlay" id="menuOverlay"></div>
+      <nav class="side-menu" id="sideMenu">
+        <div class="menu-content">
+          <div class="menu-section">
+            <h3>Dashboard</h3>
+            <a href="#" class="menu-item active" data-target="overview">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Overview</span>
+            </a>
+            <a href="#" class="menu-item" data-target="profile">
+              <i class="ri-user-line"></i>
+              <span>Profile</span>
+            </a>
+            <a href="#" class="menu-item" data-target="tasks">
+              <i class="ri-list-check-2"></i>
+              <span>Tasks</span>
+            </a>
+            <a href="#" class="menu-item" data-target="learning">
+              <i class="ri-book-open-line"></i>
+              <span>Learning</span>
+            </a>
+            <a href="#" class="menu-item" data-target="achievements">
+              <i class="ri-trophy-line"></i>
+              <span>Achievements</span>
+            </a>
+          </div>
+          <div class="menu-section">
+            <h3>Performance</h3>
+            <a href="#" class="menu-item" data-target="progress">
+              <i class="ri-line-chart-line"></i>
+              <span>Progress</span>
+            </a>
+            <a href="#" class="menu-item" data-target="goals">
+              <i class="ri-target-line"></i>
+              <span>Goals</span>
+            </a>
+            <a href="#" class="menu-item" data-target="reviews">
+              <i class="ri-feedback-line"></i>
+              <span>Reviews</span>
+            </a>
+          </div>
+          <div class="menu-section">
+            <h3>Tools</h3>
+            <a href="#" class="menu-item" data-target="settings">
+              <i class="ri-settings-3-line"></i>
+              <span>Settings</span>
+            </a>
+            <a href="#" class="menu-item" data-target="notifications">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <main id="screen-employee" class="screen screen-active">
+        <section class="content full">
+          <div class="content-section active" data-section="overview">
+            <h2>Your Performance</h2>
+            <div class="metrics-grid">
+              <div class="ring glass" data-pct="78"><div class="ring-inner"><div class="ring-label">Productivity</div><div class="ring-value">0%</div></div></div>
+              <div class="ring glass" data-pct="85"><div class="ring-inner"><div class="ring-label">Teamwork</div><div class="ring-value">0%</div></div></div>
+              <div class="ring glass" data-pct="67"><div class="ring-inner"><div class="ring-label">Creativity</div><div class="ring-value">0%</div></div></div>
+            </div>
+
+            <h2>Goals</h2>
+            <div class="timeline glass compact">
+              <div class="checkpoint" data-active="true"><span>Setup</span></div>
+              <div class="checkpoint"><span>Prototype</span></div>
+              <div class="checkpoint"><span>Beta</span></div>
+              <div class="checkpoint"><span>Launch</span></div>
+            </div>
+
+            <h2>Feedback</h2>
+            <div class="card-grid">
+              <div class="flip-card feedback"><div class="flip-inner"><div class="flip-front glass"><h3>Q2 Review</h3><div class="score">88</div></div><div class="flip-back glass"><p>Strong collaboration; push for more cross-functional knowledge sharing.</p></div></div></div>
+              <div class="flip-card feedback"><div class="flip-inner"><div class="flip-front glass"><h3>Q3 Review</h3><div class="score">92</div></div><div class="flip-back glass"><p>Great velocity; mentor new team members on code standards.</p></div></div></div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="profile">
+            <h2>Profile</h2>
+            <div class="profile-card glass">
+              <div class="profile-header">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400" alt="Profile" class="profile-avatar" />
+                <div class="profile-info">
+                  <h3>John Smith</h3>
+                  <p>Senior Software Engineer</p>
+                  <div class="profile-badges">
+                    <span class="badge">Team Lead</span>
+                    <span class="badge">Mentor</span>
+                    <span class="badge">Innovator</span>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-stats">
+                <div class="stat">
+                  <div class="stat-value">5.2</div>
+                  <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">12</div>
+                  <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-value">4.8</div>
+                  <div class="stat-label">Average Rating</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="achievements">
+            <h2>Achievements</h2>
+            <div class="achievements-grid">
+              <div class="achievement glass">
+                <div class="achievement-icon">🏆</div>
+                <h3>Top Performer</h3>
+                <p>Q3 2024</p>
+                <div class="achievement-badge gold">Gold</div>
+              </div>
+              <div class="achievement glass">
+                <div class="achievement-icon">🚀</div>
+                <h3>Innovation Award</h3>
+                <p>Best Solution</p>
+                <div class="achievement-badge silver">Silver</div>
+              </div>
+              <div class="achievement glass">
+                <div class="achievement-icon">👥</div>
+                <h3>Team Player</h3>
+                <p>Collaboration Excellence</p>
+                <div class="achievement-badge bronze">Bronze</div>
+              </div>
+              <div class="achievement glass">
+                <div class="achievement-icon">📈</div>
+                <h3>Growth Mindset</h3>
+                <p>Continuous Learning</p>
+                <div class="achievement-badge">Achieved</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="progress">
+            <h2>Progress Tracking</h2>
+            <div class="progress-charts glass">
+              <div class="progress-item">
+                <h3>Skill Development</h3>
+                <div class="skill-bar">
+                  <div class="skill-label">JavaScript</div>
+                  <div class="skill-progress">
+                    <div class="skill-fill" style="width: 85%"></div>
+                    <span class="skill-percent">85%</span>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-label">React</div>
+                  <div class="skill-progress">
+                    <div class="skill-fill" style="width: 78%"></div>
+                    <span class="skill-percent">78%</span>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-label">Node.js</div>
+                  <div class="skill-progress">
+                    <div class="skill-fill" style="width: 72%"></div>
+                    <span class="skill-percent">72%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="goals">
+            <h2>Personal Goals</h2>
+            <div class="goals-list">
+              <div class="goal-item glass">
+                <div class="goal-header">
+                  <h3>Complete Advanced React Course</h3>
+                  <span class="goal-status in-progress">In Progress</span>
+                </div>
+                <div class="goal-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%"></div>
+                  </div>
+                  <span class="progress-text">65% Complete</span>
+                </div>
+                <p class="goal-description">Master advanced React patterns and state management</p>
+                <div class="goal-deadline">Due: Dec 31, 2024</div>
+              </div>
+              <div class="goal-item glass">
+                <div class="goal-header">
+                  <h3>Lead Team Project</h3>
+                  <span class="goal-status completed">Completed</span>
+                </div>
+                <div class="goal-progress">
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%"></div>
+                  </div>
+                  <span class="progress-text">100% Complete</span>
+                </div>
+                <p class="goal-description">Successfully led the Q3 dashboard redesign project</p>
+                <div class="goal-deadline">Completed: Oct 15, 2024</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="reviews">
+            <h2>Performance Reviews</h2>
+            <div class="reviews-timeline">
+              <div class="review-item glass">
+                <div class="review-header">
+                  <h3>Q3 2024 Review</h3>
+                  <div class="review-score">92/100</div>
+                </div>
+                <div class="review-details">
+                  <p><strong>Manager:</strong> Sarah Johnson</p>
+                  <p><strong>Overall:</strong> Excellent performance with strong technical skills and leadership qualities.</p>
+                  <div class="review-highlights">
+                    <span class="highlight">Technical Excellence</span>
+                    <span class="highlight">Team Leadership</span>
+                    <span class="highlight">Innovation</span>
+                  </div>
+                </div>
+              </div>
+              <div class="review-item glass">
+                <div class="review-header">
+                  <h3>Q2 2024 Review</h3>
+                  <div class="review-score">88/100</div>
+                </div>
+                <div class="review-details">
+                  <p><strong>Manager:</strong> Sarah Johnson</p>
+                  <p><strong>Overall:</strong> Strong performance with room for growth in cross-functional collaboration.</p>
+                  <div class="review-highlights">
+                    <span class="highlight">Code Quality</span>
+                    <span class="highlight">Problem Solving</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="settings">
+            <h2>Settings</h2>
+            <div class="settings-grid">
+              <div class="setting-group glass">
+                <h3>Notifications</h3>
+                <div class="setting-item">
+                  <label>Email Notifications</label>
+                  <input type="checkbox" checked />
+                </div>
+                <div class="setting-item">
+                  <label>Performance Updates</label>
+                  <input type="checkbox" checked />
+                </div>
+                <div class="setting-item">
+                  <label>Goal Reminders</label>
+                  <input type="checkbox" />
+                </div>
+              </div>
+              <div class="setting-group glass">
+                <h3>Privacy</h3>
+                <div class="setting-item">
+                  <label>Profile Visibility</label>
+                  <select>
+                    <option>Public</option>
+                    <option>Team Only</option>
+                    <option>Private</option>
+                  </select>
+                </div>
+                <div class="setting-item">
+                  <label>Performance Sharing</label>
+                  <select>
+                    <option>Manager Only</option>
+                    <option>Team</option>
+                    <option>Public</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section" data-section="notifications">
+            <h2>Notifications</h2>
+            <div class="notifications-list">
+              <div class="notification glass">
+                <div class="notification-icon">🎯</div>
+                <div class="notification-content">
+                  <h3>Goal Achievement</h3>
+                  <p>Congratulations! You've completed your Q3 learning objective.</p>
+                  <span class="notification-time">2 hours ago</span>
+                </div>
+              </div>
+              <div class="notification glass">
+                <div class="notification-icon">📊</div>
+                <div class="notification-content">
+                  <h3>Performance Update</h3>
+                  <p>Your monthly performance report is ready for review.</p>
+                  <span class="notification-time">1 day ago</span>
+                </div>
+              </div>
+              <div class="notification glass">
+                <div class="notification-icon">👥</div>
+                <div class="notification-content">
+                  <h3>Team Update</h3>
+                  <p>New team member Alex has joined your project.</p>
+                  <span class="notification-time">3 days ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="content-section" data-section="tasks">
+  <h2>My Tasks</h2>
+  <div class="glass" style="padding:20px;">
+    <ul id="taskList" style="list-style:none; padding:0; margin:0;">
+      <li><input type="checkbox" id="task-1" /> <label for="task-1">Submit Q4 report</label></li>
+      <li><input type="checkbox" id="task-2" /> <label for="task-2">Review team feedback</label></li>
+      <li><input type="checkbox" id="task-3" /> <label for="task-3">Update project documentation</label></li>
+    </ul>
+    <input type="text" id="newTask" placeholder="Add new task..." style="margin-top:12px; padding:8px; border-radius:8px; border:1px solid var(--stroke); width:70%;" />
+    <button class="btn btn-primary" id="addTaskBtn" style="margin-left:8px;">Add</button>
+  </div>
+</div>
+
+<div class="content-section" data-section="learning">
+  <h2>Learning Resources</h2>
+  <div class="glass" style="padding:20px;">
+    <ul style="list-style:none; padding:0;">
+      <li><a href="https://www.coursera.org/learn/leadership" target="_blank">Leadership Skills (Coursera)</a></li>
+      <li><a href="https://www.freecodecamp.org/" target="_blank">FreeCodeCamp: JavaScript</a></li>
+      <li><a href="https://www.edx.org/course/communication-skills" target="_blank">Communication Skills (edX)</a></li>
+    </ul>
+  </div>
+</div>
+
+    <script src="script.js"></script>
+  </body>
+  </html>

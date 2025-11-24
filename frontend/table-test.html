@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Test</title>
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .employees-table-container {
+            width: 100%;
+            overflow: hidden;
+            border: 2px solid blue;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 12px;
+            border: 2px solid red;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 4px;
+        }
+
+        .employees-table {
+            width: 100%;
+            min-width: 1200px;
+            border-collapse: collapse;
+            background: #ffffff;
+            border: 2px solid green;
+        }
+
+        .employees-table th,
+        .employees-table td {
+            padding: 14px 12px;
+            border: 1px solid #ddd;
+            white-space: nowrap;
+        }
+
+        .employees-table th {
+            background: #f8fafc;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: #ffffff;
+        }
+
+        .update-btn {
+            background: #334155;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Employee Table Test</h1>
+    <p>This is a test to verify the table scrolling and button visibility.</p>
+
+    <div class="employees-table-container">
+        <h2>Employees Table</h2>
+        <div class="table-wrapper">
+            <table class="employees-table">
+                <thead>
+                    <tr>
+                        <th>S.NO.</th>
+                        <th>NAME</th>
+                        <th>ID</th>
+                        <th>PHONE</th>
+                        <th>WORKING STATUS</th>
+                        <th>DEPARTMENT</th>
+                        <th>ADDRESS</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Khaliq Ansari</td>
+                        <td>8937</td>
+                        <td>8107951417</td>
+                        <td>False</td>
+                        <td>CSE</td>
+                        <td>Nainwa, Rajasthan</td>
+                        <td>
+                            <button class="action-btn delete-btn">Delete</button>
+                            <button class="action-btn update-btn">Update</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Aryan Singh</td>
+                        <td>7935</td>
+                        <td>9554574976</td>
+                        <td>True</td>
+                        <td>EE</td>
+                        <td>Pune, Maharashtra</td>
+                        <td>
+                            <button class="action-btn delete-btn">Delete</button>
+                            <button class="action-btn update-btn">Update</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Yuvraj Singh Panwar</td>
+                        <td>8905</td>
+                        <td>8619667832</td>
+                        <td>False</td>
+                        <td>ME</td>
+                        <td>Kanpur, Uttar Pradesh</td>
+                        <td>
+                            <button class="action-btn delete-btn">Delete</button>
+                            <button class="action-btn update-btn">Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        console.log('Table loaded');
+        console.log('Delete buttons:', document.querySelectorAll('.delete-btn').length);
+        console.log('Update buttons:', document.querySelectorAll('.update-btn').length);
+        console.log('Table width:', document.querySelector('.employees-table').offsetWidth);
+        console.log('Wrapper width:', document.querySelector('.table-wrapper').offsetWidth);
+    </script>
+</body>
+
+</html>

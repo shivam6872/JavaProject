@@ -45,7 +45,7 @@ function hideLoading(element) {
 // AUTHENTICATION & API HELPERS
 // ============================================
 
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = 'http://localhost:8080/evalx/api';
 
 function getToken() {
   return localStorage.getItem('token');
@@ -1265,7 +1265,7 @@ async function viewEmployeeReport(id) {
   modalBody.innerHTML = '<div class="loading-spinner" style="text-align:center; padding:20px;">Loading report...</div>';
 
   try {
-    const res = await fetch(`http://localhost:4000/api/employees/${id}`);
+    const res = await fetch(`${API_BASE}/employees/${id}`);
     if (!res.ok) throw new Error('Failed to load report');
     const data = await res.json();
 
@@ -1388,7 +1388,7 @@ async function viewEmployeeDetails(id) {
   modalBody.innerHTML = '<div class="loading-spinner" style="text-align:center; padding:20px;">Loading details...</div>';
 
   try {
-    const res = await fetch(`http://localhost:4000/api/employees/${id}`);
+    const res = await fetch(`${API_BASE}/employees/${id}`);
     if (!res.ok) throw new Error('Failed to load employee details');
     const data = await res.json();
 

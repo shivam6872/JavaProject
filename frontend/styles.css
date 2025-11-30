@@ -22,7 +22,7 @@
 
 /* Light Theme */
 [data-theme="light"] {
-  --bg: #f8fafc;
+  --bg: #cbe7ff;
   --bg-2: #e2e8f0;
   --surface: rgba(255, 255, 255, 0.8);
   --surface-solid: #ffffff;
@@ -138,7 +138,7 @@ body::before {
 }
 
 .app {
-  position: relative;
+  position: absolute;
   z-index: 1;
   min-height: 100vh;
   display: grid;
